@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+  p{
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+}
+
+@layer components {
+  body {
+    @apply bg-gray-800;
+  }
+  ::-webkit-scrollbar{
+    @apply w-0.5;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-b from-blue-500 to-red-500;
+  }
+}

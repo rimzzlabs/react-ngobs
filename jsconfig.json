@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "baseUrl": "./src",
+    "paths": {
+      // configure path for absolute import
+      "@/styles/*": ["./styles/*"],
+      "@/components/*": ["./components/*"],
+      "@/layouts/*": ["./layouts/*"],
+      "@/services/*": ["./services/*"],
+      // add your own subfolder such as:
+      // "@/utils/*": ["./utils/*"]
+      // "@/hooks/*": ["./hooks/*"]
+    }
+  }
+}
