@@ -5,7 +5,7 @@ import { db, auth } from '@/services/firebase'
 import PropTypes from 'prop-types'
 import firebase from 'firebase'
 
-export default function Form({ bottom }) {
+export default function Form() {
   const [message, setMessage] = useState('')
   const btn = useRef()
 
@@ -15,15 +15,16 @@ export default function Form({ bottom }) {
       if (message.length > 0) {
         const { uid, photoURL, displayName } = auth.currentUser
         btn.current.classList.add('translate-x-96')
-        await db.collection('messages').add({
-          message,
-          displayName,
-          displayPicture: photoURL,
-          uid,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        })
-        setMessage('')
-        bottom.current.scrollIntoView({ behavior: 'smooth' })
+        await db
+          .collection('messages')
+          .add({
+            message,
+            displayName,
+            displayPicture: photoURL,
+            uid,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          })
+          .finally(() => setMessage(''))
       } else {
         return false
       }
