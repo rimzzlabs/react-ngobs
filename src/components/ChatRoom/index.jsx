@@ -31,11 +31,17 @@ export default function ChatRoom() {
     }
   }, [])
 
+  useEffect(() => {
+    if (bottom.current && messages.length > 0) {
+      bottom.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [messages])
+
   return (
     <>
       <div
         ref={warnUser}
-        className='absolute top-0 flex items-center justify-between w-full h-32 px-2 sm:px-4 -translate-y-full bg-gray-900 transition-all duration-500 z-30'>
+        className='fixed top-0 flex items-center justify-between w-full max-w-5xl h-32 px-2 sm:px-4 -translate-y-full bg-gray-900 transition-all duration-500 z-30'>
         <p className='w-full text-sm sm:text-base lg:text-lg text-gray-200'>
           apakah anda yakin ingin meninggalkan room chat?
         </p>
@@ -48,6 +54,7 @@ export default function ChatRoom() {
           </Button>
         </div>
       </div>
+
       <header className='w-full lg:max-w-screen-lg h-12 sm:h-14 lg:h-16 flex items-center justify-between px-2 sm:px-4 fixed top-0 sm:bottom-0 left-1/2 -translate-x-1/2 bg-gray-900'>
         <div className='flex items-center space-x-2 sm:space-x-3.5 text-lg font-semibold text-gray-200'>
           <span className='text-blue-500'>
@@ -61,6 +68,7 @@ export default function ChatRoom() {
           </span>
         </Button>
       </header>
+
       <Container chatRoom>
         {messages.map(({ displayPicture, message, uid, displayName }, i) => (
           <div key={i} className={`w-full flex ${uid === auth.currentUser.uid ? 'justify-end' : 'justify-start'} `}>
@@ -84,7 +92,9 @@ export default function ChatRoom() {
           </div>
         ))}
       </Container>
+
       <Form bottom={bottom} />
+
       <div ref={bottom}></div>
     </>
   )

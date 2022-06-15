@@ -28,7 +28,7 @@ export default function Form({ bottom }) {
         return false
       }
     } catch (err) {
-      console.error(`error, please send a message, error: ${err}`)
+      console.info(`error, please send a message, error: ${err}`)
     }
   }
 
