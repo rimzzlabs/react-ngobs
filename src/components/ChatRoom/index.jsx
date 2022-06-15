@@ -93,7 +93,7 @@ export default function ChatRoom() {
         ))}
       </Container>
 
-      <Form bottom={bottom} />
+      <Form />
 
       <div ref={bottom}></div>
     </>
