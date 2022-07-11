@@ -24,12 +24,13 @@ export default function Form() {
             uid,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
           })
-          .finally(() => setMessage(''))
       } else {
         return false
       }
     } catch (err) {
       console.info(`error, please send a message, error: ${err}`)
+    } finally {
+      setMessage('')
     }
   }
 
